@@ -7,10 +7,16 @@ namespace bowlingGameTest
     public class gameTest
     {
 
+        private Game g; //FIXME bad naming
+
+        [TestInitialize()]
+        public void Initialize() 
+        {
+            g = new Game();
+        }
         [TestMethod]
         public void testGutterGame()
         {
-            Game g = new Game();
             for (int i=0; i<20; i++)
             {
                 g.roll(0);
@@ -20,7 +26,6 @@ namespace bowlingGameTest
         [TestMethod]
         public void testAllOnes()
         {
-            Game g = new Game(); //FIXME duplicated initialisation
             for (int i=0; i<20; i++) //FIXME duplicated loop
             {
                 g.roll(1);
