@@ -17,12 +17,18 @@ namespace bowlingGameTest
         [TestMethod]
         public void testGutterGame()
         {
-            for (int i=0; i<20; i++)
-            {
-                _game.roll(0);
-            }
+            rollMany(20, 0);
             Assert.AreEqual(0, _game.score());
         }
+
+        private void rollMany(int n, int pins)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                _game.roll(pins);
+            }
+        }
+
         [TestMethod]
         public void testAllOnes()
         {
