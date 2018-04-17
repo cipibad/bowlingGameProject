@@ -17,5 +17,15 @@ namespace bowlingGameTest
             }
             Assert.AreEqual(0, g.score());
         }
+        [TestMethod]
+        public void testAllOnes()
+        {
+            Game g = new Game(); //FIXME duplicated initialisation
+            for (int i=0; i<20; i++) //FIXME duplicated loop
+            {
+                g.roll(1);
+            }
+            Assert.AreEqual(20, g.getScore());
+        }
     }
 }
