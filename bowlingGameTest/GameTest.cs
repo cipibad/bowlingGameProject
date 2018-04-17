@@ -15,6 +15,7 @@ namespace bowlingGameTest
             {
                 g.roll(0);
             }
+            Assert.AreEqual(0, g.score());
         }
     }
 }
