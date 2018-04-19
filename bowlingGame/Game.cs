@@ -13,7 +13,7 @@ namespace bowlingGame{
             int score = 0;
             for (int i = 0; i < _rolls.Length; i++)
             {
-                score += _rolls[i]; 
+                score += _rolls[i]; //fixme need to handle two roll/one frame at one time to check for spare (rolls[i] + rolls[i+1] == 10)
             }
             return score;
         }
