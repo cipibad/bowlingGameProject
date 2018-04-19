@@ -14,13 +14,6 @@ namespace bowlingGameTest
         {
             _game = new Game();
         }
-        [TestMethod]
-        public void testGutterGame()
-        {
-            rollMany(20, 0);
-            Assert.AreEqual(0, _game.score());
-        }
-
         private void rollMany(int n, int pins)
         {
             for (int i = 0; i < n; i++)
@@ -29,13 +22,17 @@ namespace bowlingGameTest
             }
         }
 
+        [TestMethod]        
+        public void testGutterGame()
+        {
+            rollMany(20, 0);
+            Assert.AreEqual(0, _game.score());
+        }
+
         [TestMethod]
         public void testAllOnes()
         {
-            for (int i=0; i<20; i++) //FIXME duplicated loop
-            {
-                _game.roll(1);
-            }
+            rollMany(20, 1);
             Assert.AreEqual(20, _game.score());
         }
     }
