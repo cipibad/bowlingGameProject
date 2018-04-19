@@ -13,7 +13,7 @@ namespace bowlingGame{
             int score = 0;
             int frameIndex = 0;
             for (int frame = 0; frame < 10; frame++)  {
-                if (_rolls[frameIndex] == 10) { //strike
+                if (isStrike(frameIndex)) {
                     score += 10 + strikeBonus(frameIndex);
                     frameIndex += 1;
                 } else if (isSpare(frameIndex)) {
@@ -44,6 +44,10 @@ namespace bowlingGame{
         private bool isSpare(int frameIndex) 
         {
             return _rolls[frameIndex] + _rolls[frameIndex+1] == 10;
+        }
+        private bool isStrike(int frameIndex) 
+        {
+            return _rolls[frameIndex] == 10;
         }
     }
 }
