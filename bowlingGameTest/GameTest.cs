@@ -45,6 +45,16 @@ namespace bowlingGameTest
             Assert.AreEqual(16, _game.score());
         }
 
+        [TestMethod]
+
+        public void testOneStrike()
+        {
+            _game.roll(10); //strike
+            _game.roll(3);
+            _game.roll(4);
+            rollMany(16,0);
+            Assert.AreEqual(24, _game.score());
+        }
         private void rollSpare()
         {
             _game.roll(5);
