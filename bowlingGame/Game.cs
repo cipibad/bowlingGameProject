@@ -13,7 +13,7 @@ namespace bowlingGame{
             int score = 0;
             int frameIndex = 0;
             for (int frame = 0; frame < 10; frame++)  {
-                if (_rolls[frameIndex] + _rolls[frameIndex+1] == 10) { //spare //FIXME
+                if (isSpare(frameIndex)) {
                     score += 10 + _rolls[frameIndex + 2];
                 } else {
                     score += _rolls[frameIndex] + _rolls[frameIndex+1];
@@ -21,6 +21,11 @@ namespace bowlingGame{
                 frameIndex += 2;
             }
             return score;
+        }
+
+        private bool isSpare(int frameIndex) 
+        {
+            return _rolls[frameIndex] + _rolls[frameIndex+1] == 10;
         }
     }
 }
