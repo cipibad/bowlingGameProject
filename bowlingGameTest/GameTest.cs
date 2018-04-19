@@ -35,5 +35,15 @@ namespace bowlingGameTest
             rollMany(20, 1);
             Assert.AreEqual(20, _game.score());
         }
+
+        [TestMethod]
+        public void testOneSpare()
+        {
+            _game.roll(5);
+            _game.roll(5); // spare //FIXME ugly comment
+            _game.roll(3);
+            rollMany(17,0);
+            Assert.AreEqual(16, _game.score());
+        }
     }
 }
