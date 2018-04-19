@@ -39,11 +39,16 @@ namespace bowlingGameTest
         [TestMethod]
         public void testOneSpare()
         {
-            _game.roll(5);
-            _game.roll(5); // spare //FIXME ugly comment
+            rollSpare();
             _game.roll(3);
             rollMany(17,0);
             Assert.AreEqual(16, _game.score());
+        }
+
+        private void rollSpare()
+        {
+            _game.roll(5);
+            _game.roll(5);
         }
     }
 }
