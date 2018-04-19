@@ -11,9 +11,13 @@ namespace bowlingGame{
         public int score()
         {    
             int score = 0;
-            int i = 0;
+            int i = 0; //FIXME bad naming
             for (int frame = 0; frame < 10; frame++)  {
-                score += _rolls[i] + _rolls[i+1];
+                if (_rolls[i] + _rolls[i+1] == 10) { //spare //FIXME
+                    score += 10 + _rolls[i + 2];
+                } else {
+                    score += _rolls[i] + _rolls[i+1];
+                }
                 i += 2;
             }
             return score;
