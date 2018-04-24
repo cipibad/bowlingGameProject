@@ -1,15 +1,30 @@
 namespace bowlingGame{
     public class Game
     {
-        private int[] _rolls = new int[21];
-        private int _currentRoll = 0;
+        readonly static private int MAX_ROLLS = 21;
+        readonly private int[] _rolls = new int[MAX_ROLLS];
+        readonly private int _currentRoll = 0;
 
-        public void roll(int pins)
+        public Game()
         {
-            _rolls[_currentRoll++] = pins;
+        }
+        public Game(int[] rolls, int currentRoll)
+        {
+            _rolls = rolls;
+            _currentRoll = currentRoll;
+        }
+        public Game roll(int pins)
+        {
+            int[] newRolls = new int[MAX_ROLLS];
+            for (int i = 0; i < _currentRoll; i++)
+            {
+                newRolls[i] = _rolls[i];
+            }
+            newRolls[_currentRoll] = pins;
+            return new Game(newRolls, _currentRoll + 1);
         }
         public int score()
-        {    
+        {
             int score = 0;
             int frameIndex = 0;
             for (int frame = 0; frame < 10; frame++)  {
