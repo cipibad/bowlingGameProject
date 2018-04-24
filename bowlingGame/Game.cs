@@ -1,3 +1,4 @@
+using System.Linq;
 namespace bowlingGame{
     public class Game
     {
@@ -15,13 +16,8 @@ namespace bowlingGame{
         }
         public Game roll(int pins)
         {
-            int[] newRolls = new int[MAX_ROLLS];
-            for (int i = 0; i < _currentRoll; i++)
-            {
-                newRolls[i] = _rolls[i];
-            }
-            newRolls[_currentRoll] = pins;
-            return new Game(newRolls, _currentRoll + 1);
+            return new Game(_rolls.Select((value, index) => (index == _currentRoll) ? pins : value).ToArray(), 
+                            _currentRoll + 1);
         }
         public int score()
         {
