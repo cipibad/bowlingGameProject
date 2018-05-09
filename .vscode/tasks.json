@@ -14,13 +14,23 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "test",
+            "label": "testUT",
             "command": "dotnet test bowlingGameTest",
             "type": "shell",
             "group": {
-                "kind": "build",
+                "kind": "test",
                 "isDefault": true
             },
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "testE2E",
+            "command": "dotnet test bowlingGameWebAPITest",
+            "type": "shell",
+            "group": "test",
             "presentation": {
                 "reveal": "silent"
             },

@@ -1,1 +1,6 @@
 Project skeleton based on https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
+
+=git clean -x –f
+git reset --hard HEAD
+git pull
+git checkout lab2

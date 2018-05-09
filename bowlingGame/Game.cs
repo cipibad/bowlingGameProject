@@ -1,9 +1,13 @@
 using System.Linq;
+using Newtonsoft.Json;
+
 namespace bowlingGame{
     public class Game
     {
         readonly static private int MAX_ROLLS = 21;
+        [JsonProperty]
         readonly private int[] _rolls = new int[MAX_ROLLS];
+        [JsonProperty]
         readonly private int _currentRoll = 0;
 
         public Game()
