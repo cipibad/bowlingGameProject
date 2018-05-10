@@ -36,10 +36,13 @@ namespace bowlingGameWebAPITest
        public async Task AfterRolling2And5ScoreIs7() 
        { 
            // Act 
-           var responseString = await PostJsonWebApiValuesResponseString("greet", "");
+           var responseString = await PostJsonWebApiValuesResponseString("roll/2", "");
+           responseString = await PostJsonWebApiValuesResponseString("roll/5", responseString);
+           responseString = await PostJsonWebApiValuesResponseString("score", responseString);
+           int score = JsonConvert.DeserializeObject<int>(responseString);
 
            // Assert 
-           Assert.Equal("Hello, World!", responseString);
+           Assert.Equal(7, score);
        }
     }
 }

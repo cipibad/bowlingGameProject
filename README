@@ -1,6 +1,47 @@
 Project skeleton based on https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
-=git clean -x –f
+#reset codebase
+git clean -x -f
 git reset --hard HEAD
 git pull
-git checkout lab2
+git checkout lab4
+
+=====
+dotnet run --project bowlingGameWebAPI
+http://localhost:5000/api/bowlingGame/greet
+
+
+===
+#Dockerfile
+FROM microsoft/aspnetcore-build:2.0 AS build-env
+WORKDIR /app
+
+# Copy csproj and restore as distinct layers
+RUN mkdir bowlingGame bowlingGameWebAPI
+COPY bowlingGame/*.csproj ./bowlingGame
+COPY bowlingGameWebAPI/*.csproj ./bowlingGameWebAPI
+RUN cd bowlingGameWebAPI && dotnet restore
+
+# Copy everything else and build
+COPY bowlingGame ./bowlingGame/
+COPY bowlingGameWebAPI ./bowlingGameWebAPI/
+RUN cd bowlingGameWebAPI && dotnet publish -c Release -o out
+
+# Build runtime image
+FROM microsoft/aspnetcore:2.0
+WORKDIR /app
+COPY --from=build-env /app/bowlingGameWebAPI/out .
+
+ENTRYPOINT ["dotnet", "bowlingGameWebAPI.dll"]
+
+===
+#create/run docker commands
+docker build -t bowlinggameapp .
+docker run --rm -p 80:80 --name bowlinggameapp bowlinggameapp
+
+#get
+http://localhost/api/bowlingGame/greet
+
+#post
+curl --header "Content-Type: application/json" --data '{"_rolls":[5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"_currentRoll":1}' http://localhost/api/bowlingGame/roll/3
+curl --header "Content-Type: application/json" --data '{"_rolls":[5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"_currentRoll":1}' http://localhost/api/bowlingGame/score

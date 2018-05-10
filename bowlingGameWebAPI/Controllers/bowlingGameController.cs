@@ -11,10 +11,25 @@ namespace bowlingGameWebAPI.Controllers
     [Route("api/[controller]")]
     public class bowlingGameController : Controller
     {
-        [HttpPost("greet")]
-        public String Post()
+        [HttpGet("greet")]
+        public IEnumerable<string> Get()
         {
-            return "Hello, World!";
+            return new string[] { "Hello from bowlingGame app" };
+        }
+
+        [HttpPost("score")]
+        public int Post([FromBody]Game game)
+        {
+            return game.score();
+        }
+
+        [HttpPost("roll/{pins}")]
+        public Game Post(int pins, [FromBody]Game game)
+        {
+            if(game == null)
+                game = new Game();
+            game = game.roll(pins);
+            return game;
         }
     }
 }
